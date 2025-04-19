@@ -31,7 +31,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 4rem 12% 4rem;
+    padding:  2rem 5%; 
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     display: flex;
@@ -84,9 +84,8 @@ section {
 
 .home {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15rem;
+    flex-direction: column; /* Mobile: stack vertikal */
+    padding: 10rem 5% 5rem;
 }
 
 .home-content {
@@ -295,7 +294,7 @@ span {
 }
 
 .education {
-    padding: 100px 15px;
+    padding: 8rem 5%;
     background: var(--second-bg-color);
 }
 
@@ -303,26 +302,17 @@ span {
     margin-bottom: 5rem;
 }
 
-.timeline-items {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-}
-
+/* Menjadi: */
 .timeline-items::before {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 100%;
-    background-color: var(--main-color);
-    left: calc(50% - 1px);
+    left: 2rem; /* Garis timeline di kiri */
+}
+.timeline-item {
+    padding-left: 5rem; /* Semua item rata kiri */
 }
 
 .timeline-item {
-    margin-bottom: 40px;
-    width: 100%;
+    margin-bottom: 3rem;
+    padding-left: 6rem;
     position: relative;
 }
 
@@ -340,32 +330,29 @@ span {
 }
 
 .timeline-dot {
-    height: 21px;
-    width: 21px;
-    background-color: var(--main-color);
-    box-shadow: 0 0 25px var(--main-color),
-        0 0 50px var(--main-color);
     position: absolute;
-    left: calc(50% - 8px);
+    left: 1.5rem;
+    top: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    background: var(--main-color);
     border-radius: 50%;
-    top: 10px;
+    box-shadow: 0 0 15px var(--main-color);
 }
 
 .timeline-date {
-    font-size: 20px;
-    font-weight: 800;
-    color: white;
-    margin: 6px 0 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--main-color);
+    margin-bottom: 1rem;
 }
 
 .timeline-content {
-    background-color: var(--bg-color);
-    border: 3px solid var(--main-color);
-    padding: 30px 50px;
-    border-radius: 4rem;
-    box-shadow: 0 0 10px var(--main-color);
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--main-color);
+    padding: 1.5rem;
 }
 
 .timeline-content:hover {
@@ -374,17 +361,20 @@ span {
 }
 
 .timeline-content h3 {
-    font-size: 20px;
-    color: white;
-    margin: 0 0 10px;
-    font-weight: 500;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .timeline-content p {
-    color: white;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 22px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    word-break: keep-all;
+    hyphens: auto;
+    margin-bottom: 0.3rem;
 }
 
 ::-webkit-scrollbar {
@@ -549,8 +539,48 @@ span {
     margin-top: 1rem;
 }
 
+/* Tambahkan ini untuk menu mobile */
+#menu-icon {
+    display: none; /* Tambahkan ini */
+}
+
+.timeline-items {
+    max-width: 100%;
+    padding: 0 5%;
+}
+
 /* Responsive Design */
 @media (min-width: 768px) {
+     /* Desktop style tetap seperti semula */
+     .timeline-items::before {
+        left: calc(50% - 1px);
+    }
+    .timeline-item:nth-child(odd) {
+        padding-right: calc(50% + 30px);
+    }
+
+    .home {
+        flex-direction: row; /* Desktop: sejajar */
+        align-items: center;
+        gap: 5rem;
+    }
+
+    #menu-icon {
+        display: block; /* Tampilkan ikon menu di mobile */
+    }
+    .navbar {
+        position: fixed;
+        top: 8rem;
+        left: -100%;
+        width: 100%;
+        background: var(--bg-color);
+        flex-direction: column;
+        transition: 0.3s;
+    }
+    .navbar.active {
+        left: 0;
+    }
+
     .wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -821,10 +851,69 @@ span {
     }
 }
 
+
 @media (max-width: 480px) {
     .horizontal-img {
         width: 90%;
         height: 100px;
+    }
+
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 1.5rem 5%;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 8rem;
+        left: -100%;
+        width: 100%;
+        background: var(--bg-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        transition: 0.3s;
+    }
+
+    .navbar.active {
+        left: 0;
+    }
+
+    .home-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .timeline-item {
+        padding-left: 5rem;
+    }
+    
+    .timeline-dot {
+        left: 1rem;
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .timeline-date {
+        font-size: 1.8rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.6rem;
+    }
+    
+    .timeline-content p {
+        font-size: 1.4rem;
     }
 }
 
