@@ -13,7 +13,7 @@
     --bg-color: #080808;
     --second-bg-color: #131313;
     --text-color: white;
-    --main-color: #00ffee;
+    --main-color: #c47fc4;
 }
 
 html {
@@ -256,7 +256,7 @@ span {
 
     41%,
     60% {
-        content: "Technopile";
+        content: "Technophle";
     }
 }
 
@@ -457,6 +457,8 @@ span {
     margin: auto;
 }
 
+/* ... (kode sebelumnya tetap sama sampai bagian .testimonials) */
+
 .testimonials {
     background: var(--second-bg-color);
 }
@@ -473,37 +475,128 @@ span {
     margin-bottom: 5rem;
 }
 
-.testimonials-box img {
-    width: 15rem;
-    border-radius: 50%;
-    border: 3px solid var(--main-color);
-    box-shadow: 0 0 25px var(--main-color);
-}
-
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: 1fr;
     gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .testimonial-item {
-    min-height: 550px;
-    max-width: 450px;
     background: rgba(0, 0, 0, 0.7);
     border: 3px solid rgba(238, 238, 238, 0.2);
     border-radius: 2rem;
-    margin: 0 2rem;
-    padding: 30px 60px;
-    cursor: pointer;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5rem;
-    color: white;
     transition: 0.4s ease-in-out;
 }
+
+.testimonial-item:hover {
+    border: 3px solid var(--main-color);
+    transform: translateY(-10px);
+    box-shadow: 0 0 50px var(--main-color);
+}
+
+/* Gambar Horizontal */
+.img-horizontal {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border: 3px solid var(--main-color);
+    border-radius: 1rem;
+    box-shadow: 0 0 15px var(--main-color);
+    object-fit: contain;
+}
+
+/* Gambar Vertikal */
+.img-vertical {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border: 3px solid var(--main-color);
+    border-radius: 1rem;
+    box-shadow: 0 0 15px var(--main-color);
+    object-fit: contain;
+}
+
+.project-details {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.project-details h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.project-details h3 {
+    font-size: 1.6rem;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+}
+
+.project-details p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonial-item {
+        flex-direction:column;
+        align-items: flex-start;
+        min-height: auto;
+    }
+    
+    .img-horizontal {
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .img-vertical {
+        margin-left: 70px;
+        max-width: 250px;
+        height: 300px;
+    }
+    
+    .project-details {
+        margin-top: 5;
+        margin-left: 2rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .testimonial-item {
+        flex-direction: column;
+    }
+    
+    .img-horizontal,
+    .img-vertical {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .project-details {
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
+
+/* ... (kode setelahnya tetap sama) */
 
 .testimonial-item:hover {
     border: 3px solid var(--main-color);
