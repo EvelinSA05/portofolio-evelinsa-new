@@ -6,7 +6,7 @@
     border: none;
     outline: none;
     scroll-behavior: smooth;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-body);
 }
 
 :root {
@@ -14,6 +14,16 @@
     --second-bg-color: #131313;
     --text-color: white;
     --main-color: #c47fc4;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glow-shadow: 0 0 20px rgba(196, 127, 196, 0.3);
+    --glow-shadow-hover: 0 0 35px rgba(196, 127, 196, 0.6);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .logo {
+    font-family: var(--font-heading);
 }
 
 html {
@@ -23,6 +33,9 @@ html {
 
 body {
     background: var(--bg-color);
+    background-image: radial-gradient(circle at 10% 0%, rgba(196, 127, 196, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 100%, rgba(196, 127, 196, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
     color: var(--text-color);
 }
 
@@ -31,13 +44,15 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding:  2rem 5%; 
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
+    padding: 2rem 5%;
+    background: rgba(8, 8, 8, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 5;
+    z-index: 100;
 }
 
 .logo {
@@ -49,11 +64,11 @@ body {
 }
 
 .logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .logo span {
-    text-shadow: 0 0 25px var(--main-color);
+    text-shadow: var(--glow-shadow);
 }
 
 .navbar a {
@@ -63,12 +78,14 @@ body {
     font-weight: 500;
     transition: 0.3s ease;
     border-bottom: 3px solid transparent;
+    padding-bottom: 0.5rem;
 }
 
 .navbar a:hover,
 .navbar a.active {
     color: var(--main-color);
     border-bottom: 3px solid var(--main-color);
+    text-shadow: var(--glow-shadow);
 }
 
 #menu-icon {
@@ -84,7 +101,8 @@ section {
 
 .home {
     display: flex;
-    flex-direction: column; /* Mobile: stack vertikal */
+    flex-direction: column;
+    /* Mobile: stack vertikal */
     padding: 10rem 5% 5rem;
 }
 
@@ -122,20 +140,34 @@ span {
     border-radius: 50%;
 }
 
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .home-img img {
     position: relative;
     top: 3rem;
     width: 32vw;
     border-radius: 50%;
-    box-shadow: 0 0 25px var(--main-color);
+    box-shadow: var(--glow-shadow);
     cursor: pointer;
     transition: 0.4s ease-in-out;
+    animation: float 5s ease-in-out infinite;
 }
 
 .home-img img:hover {
-    box-shadow: 0 0 25px var(--main-color),
-        0 0 50px var(--main-color),
-        0 0 100px var(--main-color);
+    box-shadow: var(--glow-shadow-hover);
+    transform: scale(1.02);
 }
 
 .home-content p {
@@ -151,8 +183,10 @@ span {
     align-items: center;
     width: 4.5rem;
     height: 4.5rem;
-    background: transparent;
-    border: 2px solid var(--main-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
     font-size: 2.5rem;
     border-radius: 50%;
     color: var(--main-color);
@@ -161,10 +195,11 @@ span {
 }
 
 .social-icons a:hover {
-    color: var(--text-color);
-    transform: scale(1.3)translateY(-5px);
-    box-shadow: 0 0 25px var(--main-color);
-    background-color: var(--main-color);
+    color: white;
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: var(--glow-shadow-hover);
+    background: rgba(196, 127, 196, 0.4);
+    border-color: rgba(196, 127, 196, 0.8);
 }
 
 .btn {
@@ -294,83 +329,172 @@ span {
 }
 
 .education {
-    padding: 5rem 0;
+    padding: 10rem 0 5rem;
+    /* Add padding top to align with other sections */
     background: var(--second-bg-color);
-    width: 100vw; /* Gunakan viewport width */
-    margin-left: calc(-50vw + 50%); /* Trick untuk full width */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
 
 .education h2 {
     margin-bottom: 5rem;
 }
 
-/* Menjadi: */
+.timeline-items {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* The vertical line in the center */
 .timeline-items::before {
-    left: 2rem; /* Garis timeline di kiri */
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: var(--main-color);
+    box-shadow: var(--glow-shadow);
+    left: calc(50% - 1px);
 }
 
 .timeline-item {
-    width: 100% !important; /* Paksa lebar penuh */
-    margin: 0 auto 3rem;
-    padding: 0 5%; /* Beri jarak kiri-kanan */
-    box-sizing: border-box;
+    margin-bottom: 4rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* keep cards aligned with dots */
 }
 
 .timeline-item:last-child {
     margin-bottom: 0;
 }
 
+/* Left side items */
 .timeline-item:nth-child(odd) {
-    padding-right: calc(50% + 30px);
-    text-align: right;
+    justify-content: flex-start;
 }
 
+/* Right side items */
 .timeline-item:nth-child(even) {
-    padding-left: calc(50% + 30px);
+    justify-content: flex-end;
 }
 
 .timeline-dot {
     position: absolute;
-    left: 1rem;
-    top: 1rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    left: calc(50% - 1rem);
+    /* 2rem total width / 2 */
+    top: 20%;
+    width: 2rem;
+    height: 2rem;
     background: var(--main-color);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--main-color);
+    box-shadow: var(--glow-shadow);
     z-index: 1;
 }
 
 .timeline-date {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--main-color);
-    margin-bottom: 1rem;
-    padding-left: 3rem;
+    padding: 0 4rem;
+    /* Spacing from the dot */
+}
+
+/* Specific styling for dates on left/right */
+.timeline-item:nth-child(odd) .timeline-date {
+    order: 2;
+    /* date on the right side of the card, next to center line */
+    text-align: left;
+    width: 50%;
+    /* take half the width */
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    order: 1;
+    /* date on the left side of the card, next to center line */
+    text-align: right;
+    width: 50%;
 }
 
 .timeline-content {
-    width: 100% !important;
-    border-radius: 0;
+    width: calc(50% - 4rem);
+    /* Half width minus spacing */
+    border-radius: 1rem;
+    padding: 2.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s ease;
+}
+
+/* Specific order for the cards */
+.timeline-item:nth-child(odd) .timeline-content {
+    order: 1;
+    text-align: left;
+    border-right: 3px solid var(--main-color);
+    border-left: none;
+    /* remove old left border */
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    order: 2;
+    text-align: left;
     border-left: 3px solid var(--main-color);
-    padding: 2rem;
 }
 
 .timeline-content:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--main-color);
+    transform: translateY(-5px);
+    box-shadow: var(--glow-shadow-hover);
+    border-color: rgba(196, 127, 196, 0.5);
+    background: rgba(196, 127, 196, 0.05);
 }
 
 .timeline-content h3 {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.timeline-content h3:nth-of-type(2) {
     font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .timeline-content p {
     font-size: 1.5rem;
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Specific styling for the Project/Activities text inside paragraphs */
+.timeline-content p.project-title {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.timeline-content .project-list {
+    margin-top: 0.5rem;
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-content .project-list li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
 }
 
 ::-webkit-scrollbar {
@@ -398,7 +522,7 @@ span {
 
 .services-container {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2.5rem;
 }
@@ -462,122 +586,355 @@ span {
 }
 
 .wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+.wrapper.swiper {
+    padding: 2rem 1rem 5rem;
+    overflow: hidden;
+}
+
 .testimonial-item {
-    background: rgba(0, 0, 0, 0.7);
-    border: 3px solid rgba(238, 238, 238, 0.2);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
     border-radius: 2rem;
     padding: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: 0.4s ease-in-out;
+    height: 100%;
+    width: 100%;
+}
+
+.swiper-slide {
+    height: auto !important;
+    display: flex;
 }
 
 .testimonial-item:hover {
-    border: 3px solid var(--main-color);
+    border-color: rgba(196, 127, 196, 0.5);
     transform: translateY(-10px);
-    box-shadow: 0 0 50px var(--main-color);
+    box-shadow: var(--glow-shadow-hover);
+    background: rgba(196, 127, 196, 0.05);
 }
 
-/* Gambar Horizontal */
-.img-horizontal {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border: 3px solid var(--main-color);
-    border-radius: 1rem;
-    box-shadow: 0 0 15px var(--main-color);
-    object-fit: contain;
-}
-
-/* Gambar Vertikal */
+/* Gambar Proyek (Uniform 16/9 aspect ratio) */
+.img-horizontal,
 .img-vertical {
     width: 100%;
-    max-width: 300px;
     height: auto;
-    border: 3px solid var(--main-color);
+    aspect-ratio: 16/9;
+    border: 1px solid var(--glass-border);
     border-radius: 1rem;
-    box-shadow: 0 0 15px var(--main-color);
-    object-fit: contain;
+    box-shadow: var(--glow-shadow);
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 2rem;
+    display: block;
 }
+
+
 
 .project-details {
-    margin-top: 2rem;
-    text-align: center;
+    margin-top: 1rem;
+    text-align: left;
     width: 100%;
+    flex-grow: 1;
+    /* Pushes buttons to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-.project-details h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+.project-details .project-title {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
     line-height: 1.3;
 }
 
-.project-details h3 {
+.project-details .project-tech {
     font-size: 1.6rem;
     color: var(--main-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
 }
 
-.project-details p {
+.project-details .feature-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.project-details .feature-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--main-color);
+}
+
+.project-details .feature-list {
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.project-details .feature-list li {
     font-size: 1.4rem;
-    line-height: 1.6;
-    text-align: left;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
+}
+
+/* New Project Buttons Styling */
+.project-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.project-actions .btn {
+    padding: 1rem 1.8rem;
+    border-radius: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-github {
+    background: transparent;
+    color: white;
+    border: 1.5px solid var(--main-color);
+}
+
+.btn-github:hover {
+    background: var(--main-color);
+    box-shadow: var(--glow-shadow);
+}
+
+.btn-modal {
+    background: var(--main-color);
+    color: white;
+    border: 1.5px solid var(--main-color);
+}
+
+.btn-modal:hover {
+    background: transparent;
+    box-shadow: 0 0 15px var(--main-color);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    width: 90%;
+    max-width: 600px;
+    padding: 3rem;
+    position: relative;
+    transform: translateY(-50px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--glow-shadow-hover);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--main-color);
+}
+
+.modal-body {
     margin-top: 1rem;
+    text-align: left;
+}
+
+.modal-features-list {
+    margin-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.5rem;
+}
+
+.modal-features-list .feature-subtitle {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.modal-features-list ul {
+    padding-left: 2rem;
+}
+
+.modal-features-list li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
+}
+
+/* --- Swiper Navigation & Pagination styling --- */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--main-color) !important;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    width: 5rem !important;
+    height: 5rem !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glow-shadow);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 2rem !important;
+    font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: var(--main-color);
+    color: white !important;
+    box-shadow: var(--glow-shadow-hover);
+    transform: scale(1.1);
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.3) !important;
+    opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--main-color) !important;
+    width: 2.5rem !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 0 10px var(--main-color);
 }
 
 /* Tambahkan ini untuk menu mobile */
 #menu-icon {
-    display: none; /* Tambahkan ini */
+    display: none;
+    /* Tambahkan ini */
 }
 
 .timeline-items {
     width: 100%;
-    max-width: 100%;
-    padding: 0;
-    margin: 0;
+    margin: 0 auto;
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
-     /* Desktop style tetap seperti semula */
+@media (max-width: 900px) {
 
-     .timeline-item {
-        width: 80%;
+    /* At smaller screens, shift the timeline to the left */
+    .timeline-items::before {
+        left: 2rem;
+    }
+
+    .timeline-item {
+        justify-content: flex-end !important;
         padding-left: 5rem;
     }
-    
-    .timeline-content {
-        border-radius: 1rem;
-        border: 1px solid var(--main-color);
-        box-shadow: 0 0 15px rgba(196, 127, 196, 0.3);
-    }
-    
-     .timeline-items::before {
-        left: calc(50% - 1px);
-    }
-    .timeline-item:nth-child(odd) {
-        padding-right: calc(50% + 30px);
+
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        position: absolute;
+        top: -4rem;
+        /* Move date above the card */
+        left: 5rem;
+        width: auto;
+        text-align: left;
+        padding: 0;
+        order: unset;
+        font-size: 2rem;
     }
 
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        width: 100%;
+        order: unset;
+        text-align: left;
+        border-left: 3px solid var(--main-color);
+        border-right: none;
+    }
+
+    .timeline-dot {
+        left: 1rem;
+        top: 2rem;
+    }
+}
+
+@media (min-width: 901px) {
     .home {
-        flex-direction: row; /* Desktop: sejajar */
+        flex-direction: row;
+        /* Desktop: sejajar */
         align-items: center;
         gap: 5rem;
     }
 
     #menu-icon {
-        display: block; /* Tampilkan ikon menu di mobile */
+        display: block;
+        /* Tampilkan ikon menu di mobile */
     }
+
     .navbar {
         position: fixed;
         top: 8rem;
@@ -587,6 +944,7 @@ span {
         flex-direction: column;
         transition: 0.3s;
     }
+
     .navbar.active {
         left: 0;
     }
@@ -594,29 +952,30 @@ span {
     .wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .testimonial-item {
-        flex-direction:column;
+        flex-direction: column;
         align-items: flex-start;
         min-height: auto;
     }
-    
+
     .img-horizontal {
         max-width: 100%;
         height: 250px;
     }
-    
+
     .img-vertical {
         margin-left: 70px;
         max-width: 250px;
         height: 300px;
     }
-    
+
     .project-details {
-        margin-top: 5;
+        margin-top: 5rem;
         margin-left: 2rem;
         text-align: left;
     }
+
     .education {
         padding: 8rem 5%;
     }
@@ -626,13 +985,13 @@ span {
     .testimonial-item {
         flex-direction: column;
     }
-    
+
     .img-horizontal,
     .img-vertical {
         max-width: 100%;
         height: auto;
     }
-    
+
     .project-details {
         margin-top: 2rem;
         text-align: center;
@@ -641,11 +1000,6 @@ span {
 
 /* ... (kode setelahnya tetap sama) */
 
-.testimonial-item:hover {
-    border: 3px solid var(--main-color);
-    transform: translateY(-10px)scale(1.03);
-    box-shadow: 0 0 50px var(--main-color);
-}
 
 .testimonial-item h2 {
     font-size: 2.8rem;
@@ -776,70 +1130,122 @@ span {
     .footer {
         padding: 3rem 0;
     }
-    
+
     .social {
         gap: 1.5rem;
         margin-bottom: 2rem;
     }
-    
+
     .social a {
         width: 40px;
         height: 40px;
         font-size: 1.8rem;
     }
-    
+
     .list {
         gap: 1.5rem;
         margin-bottom: 2rem;
     }
-    
+
     .list li::after {
         right: -0.8rem;
         width: 3px;
         height: 3px;
     }
-    
+
     .list a {
         font-size: 1.4rem;
     }
-    
+
     .copyright {
         font-size: 1.2rem;
     }
 }
 
-/* Horizontal Gallery Styles */
+/* Landing Page Highlights Section */
 .horizontal-gallery {
-    background: var(--second-bg-color);
-    padding: 2rem 0 0.5rem; /* Mengurangi padding bawah */
-    margin-bottom: 0; /* Menghilangkan margin bawah */
+    padding: 10rem 0;
+    position: relative;
+    background: transparent;
 }
 
-.gallery-container {
+.landingSwiper {
+    padding: 2rem 1rem 5rem !important;
+}
+
+.landing-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    padding: 3rem;
+    /* Synced with testimonial-item */
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.landing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    box-shadow: var(--glow-shadow-hover);
+}
+
+.browser-frame {
+    background: #1a1a1a;
+    border-radius: 1rem 1rem 0.5rem 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.browser-dots {
+    background: #2a2a2a;
+    padding: 0.8rem 1.2rem;
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem 0.5rem; /* Mengurangi padding bawah */
+    gap: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.horizontal-img {
-    width: 30%;
-    min-width: 250px;
-    height: 160px;
+.browser-dots span {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+}
+
+.browser-dots span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.browser-dots span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.browser-dots span:nth-child(3) {
+    background: #27c93f;
+}
+
+.browser-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+    aspect-ratio: 16/10;
     object-fit: cover;
-    border-radius: 0.4rem;
-    border: 1px solid var(--main-color);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+}
+
+.landing-card:hover .browser-frame img {
+    transform: scale(1.05);
 }
 
 /* Footer Adjustments */
 .footer {
-    padding-top: 1.5rem; /* Mengurangi padding atas */
-    margin-top: -0.5rem; /* "Menarik" footer lebih dekat */
-    border-top: none; /* Hapus border atas */
+    padding-top: 1.5rem;
+    /* Mengurangi padding atas */
+    margin-top: -0.5rem;
+    /* "Menarik" footer lebih dekat */
+    border-top: none;
+    /* Hapus border atas */
 }
 
 /* Responsive Adjustments */
@@ -853,10 +1259,12 @@ span {
     .horizontal-gallery {
         padding: 1.5rem 0 0;
     }
+
     .gallery-container {
         flex-wrap: wrap;
         gap: 0.8rem;
     }
+
     .horizontal-img {
         width: 45%;
         min-width: 200px;
@@ -910,7 +1318,7 @@ span {
     .timeline-item {
         padding-left: 5rem;
     }
-    
+
     .timeline-dot {
         left: 1rem;
         width: 1.8rem;
@@ -920,13 +1328,12 @@ span {
     .timeline-date {
         font-size: 1.8rem;
     }
-    
+
     .timeline-content h3 {
         font-size: 1.6rem;
     }
-    
+
     .timeline-content p {
         font-size: 1.4rem;
     }
 }
-
