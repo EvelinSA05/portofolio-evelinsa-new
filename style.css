@@ -278,14 +278,14 @@ span {
 
     0%,
     20% {
-        content: "Undergraduate Student";
+        content: "Mahasiswa S1 Sistem Informasi";
         font-size: 28px;
         font-weight: 700;
     }
 
     21%,
     40% {
-        content: "Information System";
+        content: "Pengembang Web & Mobile";
     }
 
     41%,
@@ -804,14 +804,35 @@ span {
     text-align: left;
 }
 
+.modal-body #modal-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.modal-body #modal-tech {
+    font-size: 1.8rem;
+    color: var(--main-color);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
 .modal-features-list {
     margin-top: 2rem;
     border-top: 1px solid var(--glass-border);
     padding-top: 1.5rem;
 }
 
+.modal-features-list .feature-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
 .modal-features-list .feature-subtitle {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--main-color);
     margin-bottom: 0.8rem;
@@ -823,7 +844,7 @@ span {
 }
 
 .modal-features-list li {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
