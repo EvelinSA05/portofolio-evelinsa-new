@@ -96,14 +96,14 @@ body {
 
 section {
     min-height: 100vh;
-    padding: 10rem 12% 10rem;
+    padding: 2rem 12% 2rem;
 }
 
 .home {
     display: flex;
     flex-direction: column;
     /* Mobile: stack vertikal */
-    padding: 10rem 5% 5rem;
+    padding: 2rem 5% 2rem;
 }
 
 .home-content {
@@ -266,10 +266,11 @@ span {
     background-color: var(--bg-color);
     position: absolute;
     width: calc(100% + 8px);
-    height: 110%;
+    height: 1.1em;
     border-left: 3px solid var(--bg-color);
     right: -8px;
-    top: -5%;
+    top: 50%;
+    transform: translateY(-50%);
     animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
 }
 
@@ -330,11 +331,11 @@ span {
 .heading {
     font-size: 6rem;
     text-align: center;
-    margin: 5rem 0;
+    margin: 2rem 0;
 }
 
 .education {
-    padding: 10rem 0 5rem;
+    padding: 2rem 0 5rem;
     /* Add padding top to align with other sections */
     background: var(--second-bg-color);
     width: 100vw;
@@ -342,18 +343,18 @@ span {
 }
 
 .education h2 {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .experience {
-    padding: 10rem 0 5rem;
+    padding: 2rem 0 5rem;
     background: var(--bg-color);
     width: 100vw;
     margin-left: calc(-50vw + 50%);
 }
 
 .experience h2 {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .timeline-items {
@@ -532,7 +533,7 @@ span {
 }
 
 .services h2 {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     color: white;
 }
 
@@ -586,11 +587,12 @@ span {
 /* Skills Section */
 .skills {
     background: var(--second-bg-color);
-    padding-bottom: 10rem;
+    padding-bottom: 2rem;
+    min-height: auto;
 }
 
 .skills .heading {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .skills-marquee {
@@ -682,7 +684,7 @@ span {
 }
 
 .achievements .heading {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .achievements-container {
@@ -770,7 +772,7 @@ span {
 }
 
 .testimonials .heading {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
 .wrapper {
@@ -1403,7 +1405,7 @@ span {
 
 /* Landing Page Highlights Section */
 .horizontal-gallery {
-    padding: 10rem 0;
+    padding: 5rem 0;
     position: relative;
     background: transparent;
 }
@@ -1597,21 +1599,19 @@ span {
         font-size: 1.6rem;
     }
 
-    .skills, .experience, .achievements {
-        min-height: auto;
-        padding: 5rem 5%;
-        width: 100%;
-        margin-left: 0;
+    .skills, .experience, .achievements, .education, .testimonials {
+        min-height: auto !important;
+        padding: 2rem 5% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
     }
 
     .skills {
-        padding-bottom: 5rem;
+        padding-bottom: 2rem !important;
     }
 
-    .skills .heading, 
-    .experience .heading, 
-    .achievements .heading {
-        margin-bottom: 3rem;
+    .heading {
+        margin-bottom: 2rem !important;
     }
 
     .achievement-card {
@@ -1628,12 +1628,12 @@ span {
 }
 
 @media (max-width: 480px) {
-    .skills, .experience, .achievements {
-        padding: 3rem 5%;
+    .skills, .experience, .achievements, .education, .testimonials {
+        padding: 2rem 5% !important;
     }
 
     .skills {
-        padding-bottom: 3rem;
+        padding-bottom: 2rem !important;
     }
 
     .skills-marquee {
@@ -1646,6 +1646,7 @@ span {
 
     .home-content h3 {
         font-size: 2.2rem;
+        margin-bottom: 3rem; /* Increase space to prevent overlap */
     }
 
     .home-content p {
