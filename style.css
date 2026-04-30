@@ -1603,9 +1603,10 @@ span {
         font-size: 1.6rem;
     }
 
-    .home, .skills, .experience, .achievements, .education, .testimonials {
+    section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
         min-height: auto !important;
-        padding: 8rem 5% 1rem !important;
+        padding-top: 12rem !important;
+        padding-bottom: 2rem !important;
         width: 100% !important;
         margin-left: 0 !important;
     }
@@ -1632,8 +1633,9 @@ span {
 }
 
 @media (max-width: 480px) {
-    .home, .skills, .experience, .achievements, .education, .testimonials {
-        padding: 8rem 5% 1rem !important;
+    section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
+        padding-top: 12rem !important;
+        padding-bottom: 2rem !important;
     }
 
     .skills {
