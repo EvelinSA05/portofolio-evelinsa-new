@@ -1605,7 +1605,7 @@ span {
 
     .home, .skills, .experience, .achievements, .education, .testimonials {
         min-height: auto !important;
-        padding: 7.5rem 5% 1rem !important;
+        padding: 8rem 5% 1rem !important;
         width: 100% !important;
         margin-left: 0 !important;
     }
