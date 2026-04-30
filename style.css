@@ -251,8 +251,10 @@ span {
 .text-animation span {
     position: relative;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
     white-space: nowrap;
+    font-size: 2.4rem;
+    font-weight: 700;
 }
 
 .text-animation span::before {
@@ -266,7 +268,7 @@ span {
     background-color: var(--bg-color);
     position: absolute;
     width: calc(100% + 8px);
-    height: 1.1em;
+    height: 1.25em;
     border-left: 3px solid var(--bg-color);
     right: -8px;
     top: 50%;
@@ -285,8 +287,6 @@ span {
     0%,
     20% {
         content: "Mahasiswa Sistem Informasi";
-        font-size: 2.4rem;
-        font-weight: 700;
     }
 
     21%,
