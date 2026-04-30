@@ -9,6 +9,10 @@
     font-family: var(--font-body);
 }
 
+html {
+    scroll-padding-top: 7rem;
+}
+
 :root {
     --bg-color: #080808;
     --second-bg-color: #131313;
@@ -96,14 +100,14 @@ body {
 
 section {
     min-height: 100vh;
-    padding: 5rem 12% 2rem;
+    padding: 1.5rem 12%;
 }
 
 .home {
     display: flex;
     flex-direction: column;
     /* Mobile: stack vertikal */
-    padding: 5rem 5% 2rem;
+    padding: 6rem 5% 1.5rem;
 }
 
 .home-content {
@@ -331,11 +335,11 @@ span {
 .heading {
     font-size: 6rem;
     text-align: center;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .education {
-    padding: 5rem 0 2rem;
+    padding: 1.5rem 0;
     /* Add padding top to align with other sections */
     background: var(--second-bg-color);
     width: 100vw;
@@ -347,7 +351,7 @@ span {
 }
 
 .experience {
-    padding: 5rem 0 2rem;
+    padding: 1.5rem 0;
     background: var(--bg-color);
     width: 100vw;
     margin-left: calc(-50vw + 50%);
@@ -587,12 +591,12 @@ span {
 /* Skills Section */
 .skills {
     background: var(--second-bg-color);
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
     min-height: auto;
 }
 
 .skills .heading {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .skills-marquee {
@@ -1601,7 +1605,7 @@ span {
 
     .home, .skills, .experience, .achievements, .education, .testimonials {
         min-height: auto !important;
-        padding: 6.5rem 5% 2rem !important;
+        padding: 6rem 5% 1.5rem !important;
         width: 100% !important;
         margin-left: 0 !important;
     }
@@ -1611,7 +1615,7 @@ span {
     }
 
     .heading {
-        margin-bottom: 2rem !important;
+        margin-bottom: 1.5rem !important;
     }
 
     .achievement-card {
@@ -1629,7 +1633,7 @@ span {
 
 @media (max-width: 480px) {
     .home, .skills, .experience, .achievements, .education, .testimonials {
-        padding: 6rem 5% 2rem !important;
+        padding: 5rem 5% 1rem !important;
     }
 
     .skills {
