@@ -107,7 +107,7 @@ section {
     display: flex;
     flex-direction: column;
     /* Mobile: stack vertikal */
-    padding: 6rem 5% 1.5rem;
+    padding: 15rem 5% 1.5rem !important;
 }
 
 .home-content {
@@ -135,6 +135,7 @@ span {
 
 .home-content h1 {
     font-size: 6rem;
+    color: red !important; /* TEST: Apakah warna berubah? */
     font-weight: 700;
     margin-top: 1.5rem;
     line-height: 1;
