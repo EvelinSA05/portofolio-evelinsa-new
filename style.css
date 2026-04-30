@@ -340,6 +340,17 @@ span {
     margin-bottom: 5rem;
 }
 
+.experience {
+    padding: 10rem 0 5rem;
+    background: var(--bg-color);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.experience h2 {
+    margin-bottom: 5rem;
+}
+
 .timeline-items {
     max-width: 1000px;
     margin: auto;
@@ -567,6 +578,178 @@ span {
     margin: auto;
 }
 
+/* Skills Section */
+.skills {
+    background: var(--second-bg-color);
+    padding-bottom: 10rem;
+}
+
+.skills .heading {
+    margin-bottom: 5rem;
+}
+
+.skills-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.skills-marquee::before,
+.skills-marquee::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+}
+
+.skills-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--second-bg-color), transparent);
+}
+
+.skills-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--second-bg-color), transparent);
+}
+
+.skills-track {
+    display: inline-flex;
+    gap: 3rem;
+    animation: scrollSkills 20s linear infinite;
+    padding-left: 3rem;
+}
+
+.skills-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollSkills {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 1.5rem)); }
+}
+
+.skill-box {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    min-width: 180px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    box-shadow: var(--glow-shadow-hover);
+}
+
+.skill-box i {
+    font-size: 6rem;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+.skill-box:hover i {
+    transform: scale(1.1);
+}
+
+.skill-box h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Achievements Section */
+.achievements {
+    background: var(--bg-color);
+}
+
+.achievements .heading {
+    margin-bottom: 5rem;
+}
+
+.achievements-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.achievement-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+    padding: 4rem 3rem;
+    text-align: center;
+    flex: 1 1 30rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    box-shadow: var(--glow-shadow-hover);
+}
+
+.achievement-icon {
+    font-size: 6rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
+}
+
+.achievement-card h3 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.achievement-card h4 {
+    font-size: 1.8rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.achievement-card p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.achievement-year {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--main-color);
+    color: black;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    margin-top: auto;
+    align-self: center;
+}
+
 /* ... (kode sebelumnya tetap sama sampai bagian .testimonials) */
 
 .testimonials {
@@ -650,6 +833,41 @@ span {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+.project-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-desktop {
+    background-color: rgba(0, 210, 255, 0.15);
+    color: #00d2ff;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.badge-mobile {
+    background-color: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.badge-fullstack {
+    background-color: rgba(244, 63, 94, 0.15);
+    color: #f43f5e;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.badge-frontend {
+    background-color: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
 .project-details .project-title {
@@ -1351,5 +1569,72 @@ span {
 
     .timeline-content p {
         font-size: 1.4rem;
+    }
+}
+
+/* Optimization for Mobile (Skills, Experience, Achievements) */
+@media (max-width: 768px) {
+    .skills-marquee::before,
+    .skills-marquee::after {
+        width: 50px;
+    }
+
+    .skill-box {
+        min-width: 140px;
+        padding: 2rem 1.5rem;
+    }
+
+    .skill-box i {
+        font-size: 4rem;
+    }
+
+    .skill-box h3 {
+        font-size: 1.6rem;
+    }
+
+    .experience, .achievements {
+        padding: 5rem 5%;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .achievement-card {
+        padding: 3rem 2rem;
+    }
+
+    .achievement-card h3 {
+        font-size: 2.2rem;
+    }
+    
+    .achievement-card h4 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills .heading,
+    .experience .heading,
+    .achievements .heading {
+        font-size: 3.5rem;
+    }
+
+    .skills-track {
+        gap: 1.5rem;
+    }
+
+    .skill-box {
+        min-width: 110px;
+    }
+    
+    .skill-box i {
+        font-size: 3.5rem;
+    }
+
+    .achievement-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .achievement-card h3 {
+        font-size: 2rem;
     }
 }
