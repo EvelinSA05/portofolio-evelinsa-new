@@ -96,14 +96,14 @@ body {
 
 section {
     min-height: 100vh;
-    padding: 8rem 12% 2rem;
+    padding: 5rem 12% 2rem;
 }
 
 .home {
     display: flex;
     flex-direction: column;
     /* Mobile: stack vertikal */
-    padding: 8rem 5% 2rem;
+    padding: 5rem 5% 2rem;
 }
 
 .home-content {
@@ -335,7 +335,7 @@ span {
 }
 
 .education {
-    padding: 8rem 0 2rem;
+    padding: 5rem 0 2rem;
     /* Add padding top to align with other sections */
     background: var(--second-bg-color);
     width: 100vw;
@@ -347,7 +347,7 @@ span {
 }
 
 .experience {
-    padding: 8rem 0 2rem;
+    padding: 5rem 0 2rem;
     background: var(--bg-color);
     width: 100vw;
     margin-left: calc(-50vw + 50%);
