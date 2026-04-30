@@ -1633,7 +1633,7 @@ span {
 
 @media (max-width: 480px) {
     .home, .skills, .experience, .achievements, .education, .testimonials {
-        padding: 7.5rem 5% 1rem !important;
+        padding: 10rem 5% 1rem !important;
     }
 
     .skills {
@@ -1646,7 +1646,7 @@ span {
 
     .home-content h1 {
         font-size: 3.5rem;
-        margin-top: 0; /* Remove top margin to move it higher up */
+        margin-top: 2rem; /* Restore margin to move it down */
     }
 
     .home-content h3 {
