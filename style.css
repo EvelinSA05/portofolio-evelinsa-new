@@ -1620,8 +1620,12 @@ span {
         padding-bottom: 2rem !important;
     }
 
-    .heading {
-        margin-bottom: 6rem !important;
+    .heading, .education h2, .experience h2, .achievements h2 {
+        margin-bottom: 8rem !important;
+    }
+
+    .timeline-items {
+        margin-top: 2rem !important;
     }
 
     .achievement-card {
