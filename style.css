@@ -135,7 +135,6 @@ span {
 
 .home-content h1 {
     font-size: 6rem;
-    color: red !important; /* TEST: Apakah warna berubah? */
     font-weight: 700;
     margin-top: 1.5rem;
     line-height: 1;
@@ -1606,10 +1605,14 @@ span {
 
     section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
         min-height: auto !important;
-        padding-top: 12rem !important;
+        padding-top: 8rem !important;
         padding-bottom: 2rem !important;
         width: 100% !important;
         margin-left: 0 !important;
+    }
+
+    .home-content {
+        justify-content: flex-start !important;
     }
 
     .skills {
@@ -1635,8 +1638,12 @@ span {
 
 @media (max-width: 480px) {
     section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
-        padding-top: 12rem !important;
+        padding-top: 8rem !important;
         padding-bottom: 2rem !important;
+    }
+
+    .home-content {
+        justify-content: flex-start !important;
     }
 
     .skills {
@@ -1649,7 +1656,7 @@ span {
 
     .home-content h1 {
         font-size: 3.5rem;
-        margin-top: 2rem; /* Restore margin to move it down */
+        margin-top: 1rem !important; /* Move it down slightly from the padding */
     }
 
     .home-content h3 {
