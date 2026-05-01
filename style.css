@@ -1675,7 +1675,8 @@ span {
 
     .skills .heading,
     .experience .heading,
-    .achievements .heading {
+    .achievements .heading,
+    .education .heading {
         font-size: 3.5rem;
     }
 
@@ -1695,7 +1696,13 @@ span {
         padding: 2.5rem 1.5rem;
     }
 
-    .achievement-card h3 {
+    .achievement-card h3, 
+    .timeline-content h3, 
+    .project-details .project-title {
         font-size: 2rem;
+    }
+
+    .project-list li {
+        font-size: 1.4rem;
     }
 }
