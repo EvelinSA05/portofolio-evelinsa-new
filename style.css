@@ -1605,7 +1605,7 @@ span {
 
     section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
         min-height: auto !important;
-        padding-top: 8rem !important;
+        padding-top: 7rem !important;
         padding-bottom: 2rem !important;
         width: 100% !important;
         margin-left: 0 !important;
@@ -1638,7 +1638,7 @@ span {
 
 @media (max-width: 480px) {
     section.home, .home, .skills, .experience, .achievements, .education, .testimonials {
-        padding-top: 8rem !important;
+        padding-top: 7rem !important;
         padding-bottom: 2rem !important;
     }
 
