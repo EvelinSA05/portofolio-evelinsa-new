@@ -1673,11 +1673,14 @@ span {
         font-size: 1.4rem;
     }
 
+    .heading,
     .skills .heading,
     .experience .heading,
     .achievements .heading,
-    .education .heading {
-        font-size: 3.5rem;
+    .education .heading,
+    .testimonials .heading,
+    .horizontal-gallery .heading {
+        font-size: 3.5rem !important;
     }
 
     .skills-track {
@@ -1699,7 +1702,7 @@ span {
     .achievement-card h3, 
     .timeline-content h3, 
     .project-details .project-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .project-list li {
