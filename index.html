@@ -12,6 +12,61 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        /* FINAL MOBILE OPTIMIZATION - FORCED */
+        @media (max-width: 768px) {
+            html { scroll-padding-top: 8rem; }
+            
+            section, .home, .skills, .experience, .achievements, .education, .testimonials, .horizontal-gallery {
+                min-height: auto !important;
+                padding: 8rem 5% 2.5rem !important;
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .home-content {
+                justify-content: flex-start !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .heading {
+                font-size: 3.2rem !important;
+                margin-bottom: 3.5rem !important;
+                margin-top: 0 !important;
+            }
+
+            /* Timeline specific fix */
+            .education .heading, .experience .heading {
+                margin-bottom: 5rem !important; /* Space for absolute dates */
+            }
+
+            .timeline-content h3, .project-details .project-title {
+                font-size: 1.8rem !important;
+            }
+
+            .timeline-date {
+                font-size: 1.6rem !important;
+                top: -3.5rem !important;
+            }
+
+            .home-content h1 { font-size: 3.5rem !important; margin-top: 1rem !important; }
+            .home-content h3 { font-size: 2rem !important; margin-bottom: 2rem !important; }
+            .home-content p { font-size: 1.4rem !important; line-height: 1.6 !important; }
+            
+            .skill-box { min-width: 120px !important; padding: 1.5rem !important; }
+            .skill-box i { font-size: 3.5rem !important; }
+            
+            .achievement-card { padding: 2rem 1.5rem !important; }
+            .achievement-card h3 { font-size: 1.8rem !important; }
+            
+            /* Compact project list */
+            .project-list li { font-size: 1.3rem !important; margin-bottom: 0.5rem !important; }
+            
+            .social-icons a { width: 4rem !important; height: 4rem !important; font-size: 2rem !important; }
+        }
+    </style>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
