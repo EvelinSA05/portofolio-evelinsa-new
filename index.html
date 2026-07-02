@@ -75,22 +75,25 @@
     <!-- Header Section -->
     <header class="header">
         <a href="#home" class="logo">Evelin <span>Salsabila</span></a>
-        <i class='bx bx-menu-alt-right' id="menu-icon"></i>
-        <nav class="navbar">
-            <a href="#home" class="active">Beranda</a>
-            <a href="#education">Pendidikan</a>
-            <a href="#experience">Pengalaman</a>
-            <a href="#skills">Keahlian</a>
-            <a href="#testimonials">Proyek</a>
-        </nav>
+        <div class="nav-container" style="display: flex; align-items: center;">
+            <nav class="navbar">
+                <a href="#home" class="active" data-translate="nav_home">Beranda</a>
+                <a href="#education" data-translate="nav_education">Pendidikan</a>
+                <a href="#experience" data-translate="nav_experience">Pengalaman</a>
+                <a href="#skills" data-translate="nav_skills">Keahlian</a>
+                <a href="#testimonials" data-translate="nav_projects">Proyek</a>
+            </nav>
+            <button id="lang-toggle" class="btn" style="padding: 0.5rem 1rem; margin-left: 2rem; cursor: pointer; background: transparent; border: 2px solid var(--main-color); color: var(--text-color); font-weight: 600; border-radius: .5rem; font-size: 1.2rem;">EN</button>
+            <i class='bx bx-menu-alt-right' id="menu-icon" style="margin-left: 1rem;"></i>
+        </div>
     </header>
 
     <!-- Home Section -->
     <section class="home" id="home">
         <div class="home-content">
-            <h1>Hai, Saya <span>Evelin</span></h1>
-            <h3 class="text-animation">Saya seorang <span></span></h3>
-            <p>Mahasiswa S1 Sistem Informasi dari UPN Veteran Jawa Timur. Tertarik dengan segala bentuk
+            <h1 data-translate="hero_hi">Hai, Saya <span>Evelin</span></h1>
+            <h3 class="text-animation" data-translate="hero_iam">Saya seorang <span></span></h3>
+            <p data-translate="hero_desc">Mahasiswa S1 Sistem Informasi dari UPN Veteran Jawa Timur. Tertarik dengan segala bentuk
                 teknologi dan perkembangannya, memiliki beberapa pengalaman membuat proyek ketika di bangku SMK.</p>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/evelin-salsabila-a-7b5013258/"><i class='bx bxl-linkedin'></i></a>
@@ -100,7 +103,7 @@
                         class='bx bxl-instagram-alt'></i></a>
                 <a href="https://www.youtube.com/@evelinsa5"><i class='bx bxl-youtube'></i></a>
             </div>
-            <a href="assets/docs/cv_evelin.pdf" target="_blank" class="btn" style="margin-top: 2rem;">Unduh CV</a>
+            <a href="assets/docs/cv_evelin.pdf" target="_blank" class="btn" style="margin-top: 2rem;" data-translate="hero_cv">Unduh CV</a>
         </div>
         <div class="home-img">
             <img src="assets/img/foto-evelin2.png" alt="Evelin's Photo">
@@ -109,21 +112,21 @@
 
     <!-- Education Section -->
     <section class="education" id="education">
-        <h2 class="heading">Pendidikan</h2>
+        <h2 class="heading" data-translate="title_education">Pendidikan</h2>
         <div class="timeline-items">
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">2021</div>
                 <div class="timeline-content">
-                    <h3>SMA / SMK</h3>
+                    <h3 data-translate="edu_hs_title">SMA / SMK</h3>
                     <h3>SMKN 2 BUDURAN SIDOARJO</h3>
-                    <p>Rekayasa Perangkat Lunak</p>
-                    <p>Nilai: 90.14</p>
-                    <p>Predikat: Eligible 1 jurusan Teknik Komputer</p>
-                    <p class="project-title">Proyek:</p>
+                    <p data-translate="edu_hs_major">Rekayasa Perangkat Lunak</p>
+                    <p data-translate="edu_hs_grade">Nilai: 90.14</p>
+                    <p data-translate="edu_hs_pred">Predikat: Eligible 1 jurusan Teknik Komputer</p>
+                    <p class="project-title" data-translate="edu_projects">Proyek:</p>
                     <ul class="project-list">
-                        <li>Website Resep Makanan dengan React, Laravel</li>
-                        <li>Aplikasi Android Kasir Salon dengan Java</li>
+                        <li data-translate="edu_hs_p1">Website Resep Makanan dengan React, Laravel</li>
+                        <li data-translate="edu_hs_p2">Aplikasi Android Kasir Salon dengan Java</li>
                     </ul>
                 </div>
             </div>
@@ -132,18 +135,18 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">2024</div>
                 <div class="timeline-content">
-                    <h3>UNIVERSITAS</h3>
+                    <h3 data-translate="edu_uni_title">UNIVERSITAS</h3>
                     <h3>UPN VETERAN JAWA TIMUR</h3>
-                    <p>S1 Sistem Informasi</p>
-                    <p class="project-title">Proyek:</p>
+                    <p data-translate="edu_uni_major">S1 Sistem Informasi</p>
+                    <p class="project-title" data-translate="edu_projects">Proyek:</p>
                     <ul class="project-list">
-                        <li>Website Kursus Online (React)</li>
-                        <li>Website Reservasi Lapangan Badminton (PHP)</li>
-                        <li>Aplikasi Android Kasir Salon (Laravel & Java)</li>
-                        <li>Aplikasi Android Jual Beli Tanaman (Flutter)</li>
-                        <li>Aplikasi Desktop Reservasi Lapangan Badminton (Visual Basic)</li>
-                        <li>Website Resep Makanan (Laravel & React)</li>
-                        <li>Landing Page dengan HTML, CSS, Javascript</li>
+                        <li data-translate="edu_uni_p1">Website Kursus Online (React)</li>
+                        <li data-translate="edu_uni_p2">Website Reservasi Lapangan Badminton (PHP)</li>
+                        <li data-translate="edu_uni_p3">Aplikasi Android Kasir Salon (Laravel & Java)</li>
+                        <li data-translate="edu_uni_p4">Aplikasi Android Jual Beli Tanaman (Flutter)</li>
+                        <li data-translate="edu_uni_p5">Aplikasi Desktop Reservasi Lapangan Badminton (Visual Basic)</li>
+                        <li data-translate="edu_uni_p6">Website Resep Makanan (Laravel & React)</li>
+                        <li data-translate="edu_uni_p7">Landing Page dengan HTML, CSS, Javascript</li>
                     </ul>
                 </div>
             </div>
@@ -152,21 +155,21 @@
 
     <!-- Experience Section -->
     <section class="experience" id="experience">
-        <h2 class="heading">Pengalaman</h2>
+        <h2 class="heading" data-translate="title_experience">Pengalaman</h2>
         <div class="timeline-items">
             <!-- Item 1: Pemira -->
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">Jan 2025</div>
                 <div class="timeline-content">
-                    <h3>Anggota Divisi Website</h3>
-                    <h3>Panitia Pemira Fasilkom 2025</h3>
+                    <h3 data-translate="exp_1_title">Anggota Divisi Website</h3>
+                    <h3 data-translate="exp_1_sub">Panitia Pemira Fasilkom 2025</h3>
                     <ul class="project-list" style="margin-top: 1rem;">
-                        <li>Berperan dalam tim pembuatan website Pemira menggunakan <b>Vue JS, Laravel, dan MySQL</b>.
+                        <li data-translate="exp_1_l1">Berperan dalam tim pembuatan website Pemira menggunakan <b>Vue JS, Laravel, dan MySQL</b>.
                         </li>
-                        <li>Mengerjakan bagian <b>Controller Laravel</b> untuk mengelola logika backend dan database.
+                        <li data-translate="exp_1_l2">Mengerjakan bagian <b>Controller Laravel</b> untuk mengelola logika backend dan database.
                         </li>
-                        <li>Berkoordinasi dengan divisi lain untuk memastikan kelancaran sistem selama kegiatan
+                        <li data-translate="exp_1_l3">Berkoordinasi dengan divisi lain untuk memastikan kelancaran sistem selama kegiatan
                             berlangsung.</li>
                     </ul>
                 </div>
@@ -177,14 +180,14 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">Jan 2025 - Jan 2026</div>
                 <div class="timeline-content">
-                    <h3>Tutor Informatika Kelas 9 SMP</h3>
+                    <h3 data-translate="exp_2_title">Tutor Informatika Kelas 9 SMP</h3>
                     <h3>PT Lesinaja Edukasi Indonesia</h3>
                     <ul class="project-list" style="margin-top: 1rem;">
-                        <li>Mengajar materi Informatika untuk siswa secara terstruktur sesuai kebutuhan pembelajaran.
+                        <li data-translate="exp_2_l1">Mengajar materi Informatika untuk siswa secara terstruktur sesuai kebutuhan pembelajaran.
                         </li>
-                        <li>Menyampaikan konsep dasar teknologi, logika pemrograman, dan penggunaan software.</li>
-                        <li>Membimbing siswa dalam tugas dan praktik untuk meningkatkan <i>problem solving</i>.</li>
-                        <li>Menciptakan suasana kelas yang interaktif dan kondusif melalui komunikasi aktif.</li>
+                        <li data-translate="exp_2_l2">Menyampaikan konsep dasar teknologi, logika pemrograman, dan penggunaan software.</li>
+                        <li data-translate="exp_2_l3">Membimbing siswa dalam tugas dan praktik untuk meningkatkan <i>problem solving</i>.</li>
+                        <li data-translate="exp_2_l4">Menciptakan suasana kelas yang interaktif dan kondusif melalui komunikasi aktif.</li>
                     </ul>
                 </div>
             </div>
@@ -194,13 +197,13 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">Agt 2025</div>
                 <div class="timeline-content">
-                    <h3>Pemateri Bahasa Pemrograman 1</h3>
-                    <h3>Aksi Belajar Maba Sistem Informasi</h3>
+                    <h3 data-translate="exp_3_title">Pemateri Bahasa Pemrograman 1</h3>
+                    <h3 data-translate="exp_3_sub">Aksi Belajar Maba Sistem Informasi</h3>
                     <ul class="project-list" style="margin-top: 1rem;">
-                        <li>Mengajar ±40 mahasiswa baru dalam materi pemrograman menggunakan <b>Java</b>.</li>
-                        <li>Menyampaikan konsep pemrograman secara terstruktur dari dasar hingga implementasi.</li>
-                        <li>Membimbing peserta dalam praktik coding serta membantu penyelesaian tugas.</li>
-                        <li>Membangun interaksi aktif untuk meningkatkan pemahaman dan partisipasi peserta.</li>
+                        <li data-translate="exp_3_l1">Mengajar ±40 mahasiswa baru dalam materi pemrograman menggunakan <b>Java</b>.</li>
+                        <li data-translate="exp_3_l2">Menyampaikan konsep pemrograman secara terstruktur dari dasar hingga implementasi.</li>
+                        <li data-translate="exp_3_l3">Membimbing peserta dalam praktik coding serta membantu penyelesaian tugas.</li>
+                        <li data-translate="exp_3_l4">Membangun interaksi aktif untuk meningkatkan pemahaman dan partisipasi peserta.</li>
                     </ul>
                 </div>
             </div>
@@ -210,16 +213,16 @@
                 <div class="timeline-dot"></div>
                 <div class="timeline-date">Des 2025</div>
                 <div class="timeline-content">
-                    <h3>Programmer Autonomous Surface Vessel</h3>
-                    <h3>Finalis Kontes Kapal Indonesia (KKI) 2025</h3>
+                    <h3 data-translate="exp_4_title">Programmer Autonomous Surface Vessel</h3>
+                    <h3 data-translate="exp_4_sub">Finalis Kontes Kapal Indonesia (KKI) 2025</h3>
                     <ul class="project-list" style="margin-top: 1rem;">
-                        <li>Mengembangkan sistem deteksi objek menggunakan <b>YOLO</b> untuk <i>autonomous
+                        <li data-translate="exp_4_l1">Mengembangkan sistem deteksi objek menggunakan <b>YOLO</b> untuk <i>autonomous
                                 navigation</i>.</li>
-                        <li>Mengintegrasikan model YOLO dengan <b>ROS2</b> untuk komunikasi antar node pada sistem ASV.
+                        <li data-translate="exp_4_l2">Mengintegrasikan model YOLO dengan <b>ROS2</b> untuk komunikasi antar node pada sistem ASV.
                         </li>
-                        <li>Mengoptimalkan performa deteksi objek untuk penggunaan <i>real-time</i> di lingkungan
+                        <li data-translate="exp_4_l3">Mengoptimalkan performa deteksi objek untuk penggunaan <i>real-time</i> di lingkungan
                             perairan.</li>
-                        <li>Berkolaborasi dengan tim dalam integrasi sistem AI dengan perangkat keras kapal.</li>
+                        <li data-translate="exp_4_l4">Berkolaborasi dengan tim dalam integrasi sistem AI dengan perangkat keras kapal.</li>
                     </ul>
                 </div>
             </div>
@@ -228,7 +231,7 @@
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
-        <h2 class="heading">Keahlian</h2>
+        <h2 class="heading" data-translate="title_skills">Keahlian</h2>
         <div class="skills-marquee">
             <div class="skills-track">
                 <!-- Original -->
@@ -304,7 +307,7 @@
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="testimonials-box">
-            <h2 class="heading">Proyek</h2>
+            <h2 class="heading" data-translate="title_projects">Proyek</h2>
             <div class="wrapper swiper mySwiper">
                 <div class="swiper-wrapper">
                     <!-- Project 1: Aplikasi Desktop Kasir Reservasi Lapangan Badminton -->
@@ -318,7 +321,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/FinalProject_Kelompok5_KasirBadminton.git"
                                 target="_blank" class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="desktopBadminton">Deskripsi Lengkap</button>
+                            <button class="btn btn-modal" data-project="desktopBadminton" data-translate="proj_desc_btn">Deskripsi Lengkap</button>
                         </div>
                     </div>
 
@@ -332,7 +335,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/flomart-pemmob.git" target="_blank"
                                 class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="flomart">Deskripsi Lengkap</button>
+                            <button class="btn btn-modal" data-project="flomart" data-translate="proj_desc_btn">Deskripsi Lengkap</button>
                         </div>
                     </div>
 
@@ -346,7 +349,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/laravel-recipe.git" target="_blank"
                                 class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="foodrecipes">Deskripsi lengkap</button>
+                            <button class="btn btn-modal" data-project="foodrecipes" data-translate="proj_desc_btn">Deskripsi lengkap</button>
                         </div>
                     </div>
 
@@ -360,7 +363,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/laravel-android.git" target="_blank"
                                 class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="salon">Deskripsi lengkap</button>
+                            <button class="btn btn-modal" data-project="salon" data-translate="proj_desc_btn">Deskripsi lengkap</button>
                         </div>
                     </div>
 
@@ -374,7 +377,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/pibiti-edutech-react.git" target="_blank"
                                 class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="course">Deskripsi lengkap</button>
+                            <button class="btn btn-modal" data-project="course" data-translate="proj_desc_btn">Deskripsi lengkap</button>
                         </div>
                     </div>
 
@@ -388,7 +391,7 @@
                         <div class="project-actions">
                             <a href="https://github.com/EvelinSA05/website-reservasi-badminton.git" target="_blank"
                                 class="btn btn-github"><i class='bx bxl-github'></i> GitHub</a>
-                            <button class="btn btn-modal" data-project="reservasi">Deskripsi lengkap</button>
+                            <button class="btn btn-modal" data-project="reservasi" data-translate="proj_desc_btn">Deskripsi lengkap</button>
                         </div>
                     </div>
                 </div>
@@ -499,14 +502,15 @@
             <a href="https://www.youtube.com/@evelinsa5"><i class='bx bxl-youtube'></i></a>
         </div>
         <ul class="list">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#testimonials">Proyek</a></li>
+            <li><a href="#home" data-translate="nav_home">Beranda</a></li>
+            <li><a href="#testimonials" data-translate="nav_projects">Proyek</a></li>
         </ul>
-        <p class="copyright">©️ Evelin Salsabila | Hak Cipta Dilindungi</p>
+        <p class="copyright" data-translate="footer_copyright">©️ Evelin Salsabila | Hak Cipta Dilindungi</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/lang.js"></script>
 </body>
 
 </html>
