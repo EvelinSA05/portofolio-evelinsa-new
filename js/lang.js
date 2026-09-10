@@ -52,7 +52,21 @@ const translations = {
     title_skills: "Skills",
     title_projects: "Projects",
     proj_desc_btn: "Full Description",
-    footer_copyright: "©️ Evelin Salsabila | All Rights Reserved"
+    footer_copyright: "©️ Evelin Salsabila | All Rights Reserved",
+    stat_projects: "Projects Completed",
+    stat_tech: "Technologies Mastered",
+    stat_teaching: "Years of Teaching",
+    title_contact: "Let's Work Together!",
+    contact_desc: "I'm always open to discussing web project work, creative opportunities, or just exchanging ideas. Don't hesitate to say hello!",
+    contact_email: "Send Email",
+    form_name: "Name",
+    form_subject: "Subject",
+    form_message: "Message",
+    form_send: "Send Message",
+    form_note: "* Your message will be sent securely to my inbox.",
+    form_sending: "Sending...",
+    form_success: "Successfully Sent!",
+    form_error: "Failed to Send"
   },
   id: {
     nav_home: "Beranda",
@@ -107,7 +121,21 @@ const translations = {
     title_skills: "Keahlian",
     title_projects: "Proyek",
     proj_desc_btn: "Deskripsi Lengkap",
-    footer_copyright: "©️ Evelin Salsabila | Hak Cipta Dilindungi"
+    footer_copyright: "©️ Evelin Salsabila | Hak Cipta Dilindungi",
+    stat_projects: "Proyek Diselesaikan",
+    stat_tech: "Teknologi Dikuasai",
+    stat_teaching: "Tahun Mengajar",
+    title_contact: "Mari Bekerja Sama!",
+    contact_desc: "Saya selalu terbuka untuk mendiskusikan pekerjaan proyek web, peluang kreatif, atau sekadar bertukar ide. Jangan ragu untuk menyapa!",
+    contact_email: "Kirim Email",
+    form_name: "Nama",
+    form_subject: "Subjek",
+    form_message: "Pesan",
+    form_send: "Kirim Pesan",
+    form_note: "* Pesan Anda akan dikirim dengan aman ke kotak masuk saya.",
+    form_sending: "Mengirim...",
+    form_success: "Berhasil Terkirim!",
+    form_error: "Gagal Mengirim"
   }
 };
 

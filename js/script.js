@@ -299,3 +299,236 @@ modalOverlay.addEventListener("click", (e) => {
     modalOverlay.classList.remove("active");
   }
 });
+
+// --- THEME TOGGLE LOGIC ---
+const themeToggleBtn = document.getElementById("theme-toggle");
+const body = document.body;
+
+// Check localStorage for theme
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme === "light") {
+  body.classList.add("light-mode");
+  themeToggleBtn.classList.replace("bx-moon", "bx-sun");
+}
+
+themeToggleBtn.addEventListener("click", () => {
+  body.classList.toggle("light-mode");
+  
+  if (body.classList.contains("light-mode")) {
+    localStorage.setItem("theme", "light");
+    themeToggleBtn.classList.replace("bx-moon", "bx-sun");
+  } else {
+    localStorage.setItem("theme", "dark");
+    themeToggleBtn.classList.replace("bx-sun", "bx-moon");
+  }
+});
+
+// --- AOS (ANIMATE ON SCROLL) INITIALIZATION ---
+// Menambahkan atribut data-aos secara otomatis agar HTML tetap rapi
+document.querySelectorAll('.heading').forEach(el => el.setAttribute('data-aos', 'fade-down'));
+document.querySelectorAll('.home-content').forEach(el => el.setAttribute('data-aos', 'fade-right'));
+document.querySelectorAll('.home-img').forEach(el => el.setAttribute('data-aos', 'zoom-in'));
+document.querySelectorAll('.timeline-item').forEach((el, index) => {
+    el.setAttribute('data-aos', 'fade-up');
+    el.setAttribute('data-aos-delay', (index % 2 === 0 ? '100' : '200'));
+});
+document.querySelectorAll('.skills-marquee').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+document.querySelectorAll('.mySwiper').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+document.querySelectorAll('.landingSwiper').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+
+// Inisialisasi library AOS
+AOS.init({
+    duration: 800,
+    offset: 100,
+    once: true, // Animasi hanya berjalan satu kali saat di-scroll
+});
+
+// --- COUNTER ANIMATION LOGIC ---
+const startCounters = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counterElements = entry.target.querySelectorAll('.counter');
+            counterElements.forEach(counter => {
+                const duration = 2000; // Animasi 2 detik
+                const frames = 60;
+                const totalFrames = Math.round(duration / (1000 / frames));
+                const target = +counter.getAttribute('data-target');
+                let currentFrame = 0;
+                
+                const updateCount = () => {
+                    currentFrame++;
+                    const progress = currentFrame / totalFrames;
+                    const currentCount = Math.round(target * progress);
+                    
+                    if (currentFrame < totalFrames) {
+                        counter.innerText = currentCount;
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+            // Stop observing once animated
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
+const counterObserver = new IntersectionObserver(startCounters, {
+    threshold: 0.5 // Start when 50% of the banner is visible
+});
+
+const statBanner = document.querySelector('.statistics-banner');
+if (statBanner) {
+    counterObserver.observe(statBanner);
+}
+
+// --- CONTACT FORM SUBMIT ---
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const btn = event.target.querySelector('.btn-submit');
+    const originalHTML = btn.innerHTML;
+    
+    // Gunakan variabel bahasa langsung dari lang.js (karena di-load secara global)
+    const lang = window.currentLang || 'id';
+    const t = window.translations ? window.translations[lang] : null;
+
+    // Ubah tombol jadi status loading
+    btn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> <span>${t ? t.form_sending : "Mengirim..."}</span>`;
+    btn.style.opacity = '0.7';
+    btn.style.pointerEvents = 'none';
+
+    const name    = document.getElementById('contact-name').value;
+    const email   = document.getElementById('contact-email').value;
+    const subject = document.getElementById('contact-subject').value;
+    const message = document.getElementById('contact-message').value;
+
+    try {
+        // Menggunakan FormSubmit API (Gratis & Tanpa Backend)
+        const response = await fetch("https://formsubmit.co/ajax/evelinsalsabila27@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                _subject: subject ? `[Portofolio] ${subject}` : "Pesan Baru dari Portofolio",
+                Nama: name,
+                Email: email,
+                Pesan: message
+            })
+        });
+
+        if (response.ok) {
+            btn.innerHTML = `<i class='bx bx-check-circle'></i> <span>${t ? t.form_success : "Berhasil!"}</span>`;
+            btn.style.background = '#25a244'; // Warna hijau sukses
+            event.target.reset(); // Kosongkan form
+        } else {
+            throw new Error("Gagal");
+        }
+    } catch (error) {
+        btn.innerHTML = `<i class='bx bx-x-circle'></i> <span>${t ? t.form_error : "Gagal Mengirim"}</span>`;
+        btn.style.background = '#d90429'; // Warna merah error
+    }
+
+    btn.style.opacity = '1';
+    
+    // Kembalikan tombol ke semula setelah 4 detik
+    setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.style.pointerEvents = 'auto';
+    }, 4000);
+}
+
+// --- CURSOR SPOTLIGHT ---
+(function() {
+    const spotlight = document.getElementById('cursor-spotlight');
+    if (!spotlight) return;
+
+    let mouseX = -200, mouseY = -200;
+    let currentX = -200, currentY = -200;
+    const speed = 0.12; // lerp factor (lower = smoother/lazier)
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function animateSpotlight() {
+        currentX = lerp(currentX, mouseX, speed);
+        currentY = lerp(currentY, mouseY, speed);
+
+        document.documentElement.style.setProperty('--spotlight-x', currentX + 'px');
+        document.documentElement.style.setProperty('--spotlight-y', currentY + 'px');
+
+        requestAnimationFrame(animateSpotlight);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Start hidden, reveal on first mouse move
+    spotlight.style.opacity = '0';
+    window.addEventListener('mousemove', function reveal() {
+        spotlight.style.opacity = '1';
+        spotlight.style.transition = 'opacity 0.5s ease';
+        window.removeEventListener('mousemove', reveal);
+    }, { once: true });
+
+    animateSpotlight();
+})();
+
+// --- SCROLL PROGRESS BAR + BACK TO TOP ---
+(function() {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        // Scroll Progress
+        if (progressBar) {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        }
+
+        // Back to Top visibility
+        if (backToTopBtn) {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+    }, { passive: true });
+
+    // Scroll to top on click
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+})();
+
+// --- NAVBAR GLASSMORPHISM ON SCROLL ---
+(function() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    const onScroll = () => {
+        if (window.scrollY > 60) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run on load in case page is already scrolled
+})();
+
+
+
+
