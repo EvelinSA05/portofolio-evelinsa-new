@@ -6,7 +6,10 @@ const translations = {
     nav_skills: "Skills",
     nav_projects: "Projects",
     hero_hi: "Hi, I'm <span>Evelin</span>",
-    hero_iam: "I am a <span></span>",
+    hero_iam_prefix: "I am a",
+    hero_typed_1: "Information Systems Student",
+    hero_typed_2: "Web & Mobile Developer",
+    hero_typed_3: "Technophile",
     hero_desc: "Information Systems undergraduate from UPN Veteran Jawa Timur. Interested in all forms of technology and its development, with some project experience during vocational high school.",
     hero_cv: "Download CV",
     title_education: "Education",
@@ -52,6 +55,15 @@ const translations = {
     title_skills: "Skills",
     title_projects: "Projects",
     proj_desc_btn: "Full Description",
+    proj_1_title: "Desktop App 'Badminton Court Cashier'",
+    proj_2_title: "Android App 'Plant Marketplace'",
+    proj_3_title: "Website 'Food Recipes'",
+    proj_4_title: "Android App 'Salon Cashier'",
+    proj_5_title: "Website 'Online Course'",
+    proj_6_title: "Website 'Badminton Court Reservation'",
+    skill_cat_1: "Frontend Web",
+    skill_cat_2: "Backend & Database",
+    skill_cat_3: "Mobile & Others",
     footer_copyright: "©️ Evelin Salsabila | All Rights Reserved",
     stat_projects: "Projects Completed",
     stat_tech: "Technologies Mastered",
@@ -66,7 +78,11 @@ const translations = {
     form_note: "* Your message will be sent securely to my inbox.",
     form_sending: "Sending...",
     form_success: "Successfully Sent!",
-    form_error: "Failed to Send"
+    form_error: "Failed to Send",
+    ph_name: "Your full name",
+    ph_email: "email@example.com",
+    ph_subject: "Message subject",
+    ph_message: "Write your message here..."
   },
   id: {
     nav_home: "Beranda",
@@ -75,7 +91,10 @@ const translations = {
     nav_skills: "Keahlian",
     nav_projects: "Proyek",
     hero_hi: "Hai, Saya <span>Evelin</span>",
-    hero_iam: "Saya seorang <span></span>",
+    hero_iam_prefix: "Saya seorang",
+    hero_typed_1: "Mahasiswa Sistem Informasi",
+    hero_typed_2: "Pengembang Web & Mobile",
+    hero_typed_3: "Technophile",
     hero_desc: "Mahasiswa S1 Sistem Informasi dari UPN Veteran Jawa Timur. Tertarik dengan segala bentuk teknologi dan perkembangannya, memiliki beberapa pengalaman membuat proyek ketika di bangku SMK.",
     hero_cv: "Unduh CV",
     title_education: "Pendidikan",
@@ -121,6 +140,15 @@ const translations = {
     title_skills: "Keahlian",
     title_projects: "Proyek",
     proj_desc_btn: "Deskripsi Lengkap",
+    proj_1_title: "App Desktop 'Kasir Reservasi Lapangan Badminton'",
+    proj_2_title: "App Android 'Jual Beli Tanaman'",
+    proj_3_title: "Website 'Resep Makanan'",
+    proj_4_title: "App Android 'Kasir Salon'",
+    proj_5_title: "Website 'Kursus Online'",
+    proj_6_title: "Website 'Reservasi Lapangan Badminton'",
+    skill_cat_1: "Frontend Web",
+    skill_cat_2: "Backend & Database",
+    skill_cat_3: "Mobile & Lainnya",
     footer_copyright: "©️ Evelin Salsabila | Hak Cipta Dilindungi",
     stat_projects: "Proyek Diselesaikan",
     stat_tech: "Teknologi Dikuasai",
@@ -135,7 +163,11 @@ const translations = {
     form_note: "* Pesan Anda akan dikirim dengan aman ke kotak masuk saya.",
     form_sending: "Mengirim...",
     form_success: "Berhasil Terkirim!",
-    form_error: "Gagal Mengirim"
+    form_error: "Gagal Mengirim",
+    ph_name: "Nama lengkap Anda",
+    ph_email: "email@contoh.com",
+    ph_subject: "Topik pesan Anda",
+    ph_message: "Tuliskan pesan Anda di sini..."
   }
 };
 
@@ -154,10 +186,24 @@ function updateLanguage(lang) {
     }
   });
 
+  // Update placeholders based on data-translate-placeholder attribute
+  const placeholders = document.querySelectorAll("[data-translate-placeholder]");
+  placeholders.forEach(el => {
+    const key = el.getAttribute("data-translate-placeholder");
+    if (translations[lang][key]) {
+      el.placeholder = translations[lang][key];
+    }
+  });
+
   // Update button text
   const langToggle = document.getElementById("lang-toggle");
   if (langToggle) {
     langToggle.textContent = lang === "id" ? "ID" : "EN";
+  }
+
+  // Update Typed.js strings if the function exists
+  if (typeof updateTypedStrings === "function") {
+    updateTypedStrings(lang);
   }
 }
 
