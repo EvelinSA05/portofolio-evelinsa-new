@@ -1,7 +1,50 @@
+// --- PRELOADER ---
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    // Memberikan sedikit waktu (1.5 detik) agar animasi pembuka sempat terlihat
+    setTimeout(() => {
+      preloader.classList.add("preloader-hidden");
+    }, 1500);
+  }
+});
+
+// --- CUSTOM CURSOR ---
+const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+  document.addEventListener('mousemove', (e) => {
+    // Gunakan requestAnimationFrame untuk performa yang lebih mulus jika diperlukan,
+    // namun secara default style langsung juga sudah cukup mulus berkat transition CSS.
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Ambil semua elemen yang dapat diklik (tombol, tautan, kartu)
+  const hoverElements = document.querySelectorAll('a, button, .service-box, .skill-box, .achievement-card, .timeline-content, .project-details .btn, .logo');
+  
+  hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hovering');
+    });
+  });
+}
+
 let menuIcon = document.querySelector("#menu-icon");
 let navbar = document.querySelector(".navbar");
 let sections = document.querySelectorAll("section");
 let navLinks = document.querySelectorAll("header nav a");
+
+let collapseToggle = document.querySelector("#collapse-toggle");
+let header = document.querySelector("#header");
+
+if (collapseToggle && header) {
+  collapseToggle.onclick = () => {
+    header.classList.toggle("collapsed");
+  };
+}
 
 window.onscroll = () => {
   sections.forEach((sec) => {
@@ -26,29 +69,92 @@ menuIcon.onclick = () => {
   navbar.classList.toggle("active");
 };
 
-// --- SWIPER CAROUSEL INITIALIZATION ---
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 1,
-  spaceBetween: 40,
-  loop: true,
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  breakpoints: {
-    992: {
-      slidesPerView: 2,
+// --- SWIPER CAROUSEL & PROJECT FILTER INITIALIZATION ---
+let swiperInstance;
+const swiperWrapper = document.querySelector('.mySwiper .swiper-wrapper');
+let originalSlides = [];
+
+if (swiperWrapper) {
+  // Simpan semua slide asli sebelum inisialisasi Swiper (sebelum digandakan oleh loop)
+  originalSlides = Array.from(swiperWrapper.querySelectorAll('.swiper-slide'));
+}
+
+function initProjectsSwiper(filter = 'all') {
+  if (!swiperWrapper) return;
+  
+  // Hancurkan instance swiper lama jika ada
+  if (swiperInstance) {
+    swiperInstance.destroy(true, true);
+  }
+
+  // Bersihkan wrapper dan masukkan hanya slide yang cocok
+  swiperWrapper.innerHTML = '';
+  
+  originalSlides.forEach(slide => {
+    // Klon slide agar tidak merusak referensi DOM aslinya
+    const clone = slide.cloneNode(true);
+    if (filter === 'all' || clone.getAttribute('data-category') === filter) {
+      swiperWrapper.appendChild(clone);
+    }
+  });
+
+  // Re-inisialisasi Swiper
+  swiperInstance = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 40,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
     },
-  },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      992: {
+        slidesPerView: 2,
+      },
+    },
+    // Pastikan swiper berjalan meskipun hanya ada 1 atau 2 slide
+    watchOverflow: true, 
+  });
+  
+  // Update translation tags if user already changed language
+  if (typeof updateLanguage === 'function' && typeof currentLang !== 'undefined') {
+      setTimeout(() => updateLanguage(currentLang), 50);
+  }
+}
+
+// Jalankan saat pertama kali load
+try {
+    initProjectsSwiper('all');
+} catch (e) {
+    console.error("Swiper init error:", e);
+}
+
+// Logic untuk tombol filter menggunakan event delegation
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    // Hapus kelas aktif dari semua tombol
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    // Tambahkan kelas aktif ke tombol yang diklik
+    btn.classList.add('active');
+    
+    // Ambil data filter dan jalankan ula
+    const filterValue = btn.getAttribute('data-filter');
+    try {
+        initProjectsSwiper(filterValue);
+    } catch (err) {
+        console.error("Swiper filter error:", err);
+    }
 });
 
 // --- LANDING PAGE SWIPER INITIALIZATION ---
@@ -532,3 +638,166 @@ async function handleFormSubmit(event) {
 
 
 
+
+// --- VANILLA TILT 3D EFFECT ---
+if (typeof VanillaTilt !== 'undefined') {
+  VanillaTilt.init(document.querySelectorAll('.skill-box, .service-box, .achievement-card, .timeline-content, .project-details'), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15,
+      scale: 1.02
+  });
+}
+
+
+// --- TYPED.JS TYPEWRITER EFFECT ---
+let typedInstance = null;
+
+function initTyped(lang) {
+  if (typeof Typed === 'undefined') return;
+  
+  // Destroy existing instance if any
+  if (typedInstance) {
+    typedInstance.destroy();
+  }
+
+  // Get translations from window object (assuming translations is global from lang.js)
+  const t = typeof translations !== 'undefined' ? translations[lang] : null;
+  const s1 = t ? t['hero_typed_1'] : 'Information Systems Student';
+  const s2 = t ? t['hero_typed_2'] : 'Web & Mobile Developer';
+  const s3 = t ? t['hero_typed_3'] : 'Technophile';
+
+  typedInstance = new Typed('.typed-text', {
+    strings: [s1, s2, s3],
+    typeSpeed: 60,
+    backSpeed: 30,
+    backDelay: 2000,
+    loop: true
+  });
+}
+
+// Make globally accessible for lang.js
+window.updateTypedStrings = initTyped;
+
+// Initialize when page loads (default language)
+window.addEventListener('load', () => {
+  const currentLang = localStorage.getItem('lang') || 'en';
+  initTyped(currentLang);
+});
+
+
+// --- tsParticles NETWORK BACKGROUND ---
+window.addEventListener('load', () => {
+  if (typeof tsParticles !== 'undefined') {
+    tsParticles.load('tsparticles', {
+      background: { color: { value: 'transparent' } },
+      fpsLimit: 60,
+      interactivity: {
+        detectsOn: 'window',
+        events: {
+          onHover: { enable: true, mode: 'grab' },
+          resize: true,
+        },
+        modes: {
+          grab: { distance: 150, links: { opacity: 0.6, color: '#c47fc4' } }
+        },
+      },
+      particles: {
+        color: { value: '#c47fc4' },
+        links: {
+          color: '#c47fc4',
+          distance: 120,
+          enable: true,
+          opacity: 0.2,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: 'none',
+          random: true,
+          straight: false,
+          outModes: 'bounce',
+        },
+        number: { value: 50, density: { enable: true, area: 800 } },
+        opacity: { value: 0.3 },
+        shape: { type: 'circle' },
+        size: { value: { min: 1, max: 3 } },
+      },
+      detectRetina: true,
+    });
+  }
+});
+
+
+
+// --- EXPERIENCE FILTER & LOAD MORE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.exp-filter-btn');
+    const items = document.querySelectorAll('#experience .timeline-item');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    
+    let currentFilter = 'all';
+    let isExpanded = false;
+    const initialCount = 3; // Show 3 items max initially
+
+    function updateView() {
+        let visibleCount = 0;
+        let matchedItems = [];
+
+        // First pass: identify matched items
+        items.forEach(item => {
+            if (currentFilter === 'all' || item.getAttribute('data-year') === currentFilter) {
+                matchedItems.push(item);
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+
+        // Second pass: apply load more limit
+        matchedItems.forEach((item, index) => {
+            if (!isExpanded && index >= initialCount) {
+                item.classList.add('hidden');
+            } else {
+                item.classList.remove('hidden');
+                visibleCount++;
+            }
+        });
+
+        // Handle button visibility & text
+        if (matchedItems.length <= initialCount) {
+            loadMoreBtn.style.display = 'none'; // Hide if total items <= 3
+        } else {
+            loadMoreBtn.style.display = 'inline-block';
+            if (isExpanded) {
+                loadMoreBtn.textContent = 'Lihat Lebih Sedikit';
+            } else {
+                loadMoreBtn.textContent = 'Lihat Lebih Banyak';
+            }
+        }
+    }
+
+    // Filter Click Event
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            currentFilter = btn.getAttribute('data-filter');
+            isExpanded = false; // Reset to collapsed view on filter change
+            updateView();
+        });
+    });
+
+    // Load More Click Event
+    if(loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            updateView();
+        });
+    }
+
+    // Initial call
+    updateView();
+});
