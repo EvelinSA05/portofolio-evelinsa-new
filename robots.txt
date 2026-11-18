@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evelinsa05.github.io/portofolio-evelinsa-new/sitemap.xml
